@@ -1,5 +1,5 @@
 # SELLING!!!
-OVER 1500+ hours was put into this, however, due to an unforseen life event I am need of money, So I am selling my lifeswork fro pennies on teh dollar, please rreach out.
+OVER 1500+ hours was put into this, however, due to an unforseen life event I am need of money, So I am selling my lifeswork fro pennies on the dollar, please reach out.
 ----------
 IOS APP -- [Certgames iOS App](https://apps.apple.com/us/app/comptia-cert-games-practice/id6743811522)
 WEBSITE -- [CertGames](certgames.com)
