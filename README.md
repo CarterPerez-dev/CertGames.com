@@ -5,23 +5,8 @@ IOS APP -- [Certgames iOS App](https://apps.apple.com/us/app/comptia-cert-games-
 WEBSITE -- [CertGames](certgames.com)
 REACH OUT, WILLING TO NEGOTIATE, AIMING FOR $2000--> [Email](carterperez@certgames.com)
 ---------------------------------------------------
-
-
-[![Carter Perez](https://img.shields.io/badge/Carter%20Perez-red)](https://www.linkedin.com/in/carterperez-dev/) [![CertGames Core](https://img.shields.io/badge/CertGames%20Core-grey)](https://github.com/CarterPerez-dev/CertGames-Core) [![CertGames iOS](https://img.shields.io/badge/CertGames%20iOS-red)](https://github.com/CarterPerez-dev/CertGames-IOS) [![CertGames Android](https://img.shields.io/badge/CertGames%20Android-grey)](https://github.com/CarterPerez-dev/CertGames-Android) [![MongoDB Atlas](https://img.shields.io/badge/MongoDB%20Atlas-red)](https://www.mongodb.com/) [![React](https://img.shields.io/badge/React%20-grey)](https://react.dev/) [![Flask API](https://img.shields.io/badge/Flask%20API-red)](https://flask.palletsprojects.com/en/stable/) [![Redis](https://img.shields.io/badge/Redis%20-grey)](https://redis.io/) [![Docker](https://img.shields.io/badge/Docker-red)](https://www.docker.com/) [![Cybersecurity](https://img.shields.io/badge/Cybersecurity-grey)](https://apps.apple.com/us/app/comptia-cert-games-practice/id6743811522) [![Nginx](https://img.shields.io/badge/Nginx%20-red)](https://nginx.org/) [![Angela Moss](https://img.shields.io/badge/Angela%20Moss-red)](https://youtu.be/hoHr4W_0Viw?si=xmJH3cfUDTYk9Nyy)
-![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=30&duration=1500&pause=400&color=A50021&center=true&vCenter=true&width=1100&lines=CertGames;Advanced+Cybersecurity+Application)
-![CertGames Logo](https://raw.githubusercontent.com/CarterPerez-dev/CertGames-Core/main/frontend/my-react-app/public/assets/ios.png)
-
-[![React](https://img.shields.io/badge/React-18.3.1-61dafb.svg)](https://reactjs.org/)
-[![React Native](https://img.shields.io/badge/React_Native-0.76.7-0088CC.svg)](https://reactnative.dev/)
-[![Flask](https://img.shields.io/badge/Flask-3.1.1-black.svg)](https://flask.palletsprojects.com/)
-[![OpenAI](https://img.shields.io/badge/OpenAI_Integration-GPT4o-412991.svg)](https://openai.com/)
-[![Google AI](https://img.shields.io/badge/Gemini_Integration-Gemini_Pro-4285F4.svg)](https://ai.google.dev/)
-[![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED.svg)](https://www.docker.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-4DB33D.svg)](https://www.mongodb.com/cloud/atlas)
-[![Redis](https://img.shields.io/badge/Redis-7.2-DC382D.svg)](https://redis.io/)
-[![uWSGI](https://img.shields.io/badge/uWSGI-2.0.29-00af5d.svg)](https://uwsgi-docs.readthedocs.io/)
-[![Nginx](https://img.shields.io/badge/Nginx-Latest-009639.svg)](https://nginx.org/)
-
+-------------
+---------
 # Structure
 # 5/19/2025
 ---
