@@ -40,9 +40,7 @@ CertGames is a comprehensive cybersecurity training platform designed to help IT
 - [Future Development Roadmap](#future-development-roadmap)
 - [Contact & Support](#contact--support)
 
-***`FWI, if you are curious what all those HTML files are in my honeypot, as well as what my honeypot even does/ looks like in my admin panel -- Well I actually extracted what I did in this appliction and made it a python package, so that has all teh documentation you need about it`***
-
-[flask-honeypot](https://github.com/CarterPerez-dev/flask-honeypot)
+***`FWI, if you are curious what all those HTML files are in my honeypot, as well as what my honeypot even does, looks like in my admin panel -- Well I actually extracted what I did in this appliction and made it a python package, so that has all teh documentation you need about it`***  [flask-honeypot](https://github.com/CarterPerez-dev/flask-honeypot)
 
 ## Architecture Overview
 
