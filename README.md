@@ -1,15 +1,5 @@
 # SELLING!!! | Please reach out to [My Email](carterperez@certgames.com) | $2000
 ----
-<p align="center">
-  <a href="https://github.com/CarterPerez-dev/ProxyAuthRequired">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=CarterPerez-dev&repo=ProxyAuthRequired&theme=dark&hide_border=true" alt="ProxyAuthRequired Repo" />
-  </a>
-</p>
-
-                                       ***This was all from working on Certgames***
-![Screenshot 2025-05-20 005032](https://github.com/user-attachments/assets/b34f1f39-a35c-49b0-bef8-fe23e489c995)
-
-----
 ![image](https://github.com/user-attachments/assets/da6acb50-9bb0-46be-b319-6bab7cfa7605)
 ---
 # Overview
