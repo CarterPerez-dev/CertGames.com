@@ -9,7 +9,7 @@
 ![image](https://github.com/user-attachments/assets/da6acb50-9bb0-46be-b319-6bab7cfa7605)
 
 ## Due to an unforseen life event, I am need of money, 
-## So I am selling this codebase including the IOS app, Web app, assets, customers, etc etc.
+## So I am selling this codebase including the IOS app, Web app, assets, customers, etc etc. Please reach out to [My Email](carterperez@certgames.com)
 ---
 # Overview
 
