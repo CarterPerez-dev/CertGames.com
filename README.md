@@ -8,9 +8,14 @@
 
 ![image](https://github.com/user-attachments/assets/da6acb50-9bb0-46be-b319-6bab7cfa7605)
 
-## OVER 3000+ hours was put into this, however, due to an unforseen life event I am need of money, So I am selling my lifeswork fro pennies on the dollar, please reach out.
-
+## Due to an unforseen life event, I am need of money, 
+## So I am selling this codebase including the IOS app, Web app, assets, customers, etc etc.
+---
 # Overview
+
+[API](https://github.com/CarterPerez-dev/CertGames.com/blob/main/API.md)
+[Structure](https://github.com/CarterPerez-dev/CertGames.com/blob/main/Tree.md)
+[Start to End Pictures](https://github.com/CarterPerez-dev/CertGames.com/blob/main/Start-End-Pics.md)
 
 CertGames is a comprehensive cybersecurity training platform designed to help IT professionals prepare for certification exams through gamified learning experiences. The platform integrates advanced AI-driven tools, practice tests, and interactive simulations to create an engaging learning environment.
 
@@ -626,8 +631,6 @@ CertGames leverages multiple AI models throughout the platform to enhance the le
 5. **Exploit Simulation**: Demonstrates conceptual exploit generation for educational purposes
 
 ### AI Integration Architecture
-
-![AI Integration Diagram](https://raw.githubusercontent.com/CarterPerez-dev/CertGames-Core/main/Stack/Architecture/AI-Integration.png)
 
 ### Multi-model Approach
 
