@@ -5,10 +5,9 @@
 # Overview
 
 ### [API](https://github.com/CarterPerez-dev/CertGames.com/blob/main/API.md)
-
 ### [Structure](https://github.com/CarterPerez-dev/CertGames.com/blob/main/Tree.md)
-
-CertGames is a comprehensive cybersecurity training platform designed to help IT professionals prepare for certification exams through gamified learning experiences. The platform integrates advanced AI-driven tools, practice tests, and interactive simulations to create an engaging learning environment.
+----
+* **CertGames is a comprehensive cybersecurity training platform designed to help IT professionals prepare for certification exams through gamified learning experiences. The platform integrates advanced AI-driven tools, practice tests, and interactive simulations to create an engaging learning environment.
 
 **Live Platform:** [CertGames.com](https://certgames.com)  
 **iOS App:** [App Store Link](https://apps.apple.com/us/app/comptia-cert-games-practice/id6743811522)  
