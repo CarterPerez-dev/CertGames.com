@@ -13,9 +13,12 @@
 ---
 # Overview
 
-![API](https://github.com/CarterPerez-dev/CertGames.com/blob/main/API.md)
-![Structure](https://github.com/CarterPerez-dev/CertGames.com/blob/main/Tree.md)
-![Start to End Pictures](https://github.com/CarterPerez-dev/CertGames.com/blob/main/Start-End-Pics.md)
+[API](https://github.com/CarterPerez-dev/CertGames.com/blob/main/API.md)
+*
+[Structure](https://github.com/CarterPerez-dev/CertGames.com/blob/main/Tree.md)
+*
+[Start to End Pictures](https://github.com/CarterPerez-dev/CertGames.com/blob/main/Start-End-Pics.md)
+*
 
 CertGames is a comprehensive cybersecurity training platform designed to help IT professionals prepare for certification exams through gamified learning experiences. The platform integrates advanced AI-driven tools, practice tests, and interactive simulations to create an engaging learning environment.
 
