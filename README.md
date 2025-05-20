@@ -1,4 +1,4 @@
-# SELLING!!! Please reach out to [My Email](carterperez@certgames.com) $2000
+# SELLING!!! | Please reach out to [My Email](carterperez@certgames.com) | $2000
 ----
 <p align="center">
   <a href="https://github.com/CarterPerez-dev/ProxyAuthRequired">
