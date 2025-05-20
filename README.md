@@ -1,5 +1,12 @@
 # SELLING!!!
 
+<p align="center">
+  <a href="https://github.com/CarterPerez-dev/ProxyAuthRequired">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=CarterPerez-dev&repo=ProxyAuthRequired&theme=dark&hide_border=true" alt="ProxyAuthRequired Repo" />
+  </a>
+</p>
+
+
 ![image](https://github.com/user-attachments/assets/da6acb50-9bb0-46be-b319-6bab7cfa7605)
 **
 OVER 1500+ hours was put into this, however, due to an unforseen life event I am need of money, So I am selling my lifeswork fro pennies on the dollar, please reach out.
