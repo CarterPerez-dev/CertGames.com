@@ -1,4 +1,4 @@
-# SELLING!!! | Please reach out to [My Email](carterperez@certgames.com) | $2000
+# SELLING the whole codebase, domain, customers, iOS app, assets, etc ect | Please reach out to [My Email](carterperez@certgames.com) | $2000 | [CertGames.com](https://certgames.com) | [iOS](https://apps.apple.com/us/app/comptia-cert-games-practice/id6743811522)
 ----
 ![image](https://github.com/user-attachments/assets/da6acb50-9bb0-46be-b319-6bab7cfa7605)
 ---
