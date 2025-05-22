@@ -1,8 +1,158 @@
 
+## Project Structure and Components
 
+This section provides a brief overview of each major file and component within the backend codebase.
 
+### Root Directory
 
-# /frontend Structure and File Explanations
+*   **`app.py`**: The main Flask application file that initializes the app and its extensions like CORS, Session, SocketIO, JWT, and OAuth. It registers all route blueprints, sets up `before_request` and `after_request` handlers for critical functionalities like logging, global rate limiting, subscription checks, and security headers, and defines SocketIO event handlers for real-time communication.
+*   **`Dockerfile.dev`**: Defines the Docker container setup for the development environment, installing Python, system dependencies, and Python packages from `requirements.txt`, along with development-specific tools. It runs the Flask application directly using `python app.py` for easy debugging and hot reloading.
+*   **`Dockerfile.prod`**: Specifies the Docker container configuration for production deployment, setting up a lean Python environment and installing dependencies. It uses uWSGI as the application server, configured via `uwsgi.ini`, for robust and performant serving of the Flask app.
+*   **`instance_config.py`**: A configuration file for instance-specific settings, likely used for development or debugging purposes, containing flags like `VOID_FLAG` and a `SECRET_SET` of IP addresses.
+*   **`requirements.txt`**: Lists all Python package dependencies and their versions required to run the backend application, ensuring a consistent environment.
+*   **`uwsgi.ini`**: Configuration file for the uWSGI application server, specifying settings for how the Flask app is run in production. It includes parameters for socket binding, process management, asynchronous workers using gevent, WebSocket support, and various performance optimizations.
+
+### `.well-known/`
+
+*   **`apple-app-site-association`**: Configures Universal Links and Shared Web Credentials, allowing the iOS app to handle specific web URLs and share credentials.
+
+### `AI_helpers/`
+
+*   **`__init__.py`**: Initializes the `AI_helpers` directory as a Python package.
+*   **`analogy_stream_helper.py`**: Powers the AI analogy feature by generating analogies for cybersecurity concepts using OpenAI's GPT-4o. It supports single, comparison, or triple concept analogies and streams the response token by token.
+*   **`grc_stream_helper.py`**: Generates diverse GRC (Governance, Risk Management, Compliance) multiple-choice questions using OpenAI GPT-4o, tailored for certifications like CISSP and CASP+. This helper streams responses in JSON format and includes robust parsing for varied AI outputs.
+*   **`scenario_helper.py`**: Drives the AI scenario-based learning module by generating detailed cybersecurity incident scenarios and corresponding interactive multiple-choice questions via OpenAI GPT-4o. It streams content chunk-by-chunk and employs sophisticated parsing to handle complex JSON responses, including retries for reliability.
+*   **`xploitcraft_helper.py`**: Assists in cybersecurity training by generating educational exploit payloads and detailed explanations for specified vulnerabilities and evasion techniques using OpenAI GPT-4o. It provides multiple code examples and their implications in a structured, streamable format.
+
+### `Celery/`
+
+*   **`__init__.py`**: Initializes the `Celery` directory as a Python package.
+*   **`celery_app.py`**: Configures and initializes the Celery distributed task queue, enabling asynchronous background processing for tasks such as sending emails, performing cleanups, and checking API health. It defines a beat schedule for various periodic maintenance and operational tasks essential for the application's stability and performance.
+
+### `Clients/`
+
+*   **`__init__.py`**: Initializes the `Clients` directory as a Python package for third-party API clients.
+*   **`Gemini.py`**: Provides a client for interacting with Google's Gemini API, specifically designed to generate complete React-based portfolio websites based on user resume text and preferences. This helper handles prompt construction, API calls with retries, and sophisticated parsing of the generated HTML, CSS, and JavaScript code. It also includes functionality to fix errors in the generated code.
+*   **`OpenAI.py`**: Initializes and configures the global OpenAI API client, making it readily available for other modules to use for AI-powered features.
+
+### `models/`
+
+*   **`__init__.py`**: Initializes the `models` directory, centralizing data model definitions.
+*   **`newsletter.py`**: Defines the data models and logic for newsletter functionality, including managing subscriber lists with unique unsubscribe tokens and handling newsletter campaign creation and distribution. It interacts with the `newsletterSubscribers` and `newsletterCampaigns` MongoDB collections.
+*   **`password_reset.py`**: Manages the password reset process by generating secure, time-limited reset tokens and linking them to users. It facilitates sending password reset emails and verifies tokens before allowing password updates in the `passwordResets` collection.
+*   **`users.py`**: Centralizes user data management, including creation, retrieval, and updates for attributes like coins, XP, levels, and achievements. It features robust validation for usernames, passwords, and emails, and handles interactions with shop items and user subscriptions. This model interacts with `mainusers_collection`, `shop_collection`, and `achievements_collection`.
+
+### `mongodb/`
+
+*   **`__init__.py`**: Initializes the `mongodb` package, likely containing database connection setup.
+*   **`database.py`**: Establishes the connection to the MongoDB database using Flask-PyMongo and provides global access to various collections used throughout the application, such as `mainusers_collection`, `tests_collection`, and `honeypot_interactions`.
+
+### `routes/`
+
+*   **`__init__.py`**: Initializes the main `routes` package, aggregating various route blueprints.
+
+    *   #### `AI/`
+        *   **`__init__.py`**: Initializes the `AI` routes package.
+        *   **`analogy_routes.py`**: Provides the API endpoint (`/stream_analogy`) for generating analogies related to cybersecurity concepts. It utilizes the `analogy_stream_helper` to stream responses and is protected by rate limiting.
+        *   **`gemini_routes.py`**: Manages API endpoints for generating and deploying AI-powered portfolio websites using the Gemini API. It handles asynchronous portfolio generation, status updates, error fixing, and orchestrates deployment to Vercel via GitHub integration. These routes are JWT protected and rate-limited.
+        *   **`grc_routes.py`**: Offers an API endpoint (`/stream_question`) for generating Governance, Risk, and Compliance (GRC) questions. It leverages `grc_stream_helper` for streaming JSON responses and enforces rate limits.
+        *   **`scenario_routes.py`**: Contains API endpoints for streaming AI-generated cybersecurity scenarios (`/stream_scenario`) and interactive questions (`/stream_questions`) based on those scenarios. It uses `scenario_helper` and applies rate limiting.
+        *   **`xploit_routes.py`**: Provides the `/generate_payload` API endpoint for creating educational exploit payloads for cybersecurity training. It utilizes the `xploitcraft_helper` and supports streaming responses, with rate limiting applied.
+
+    *   #### `Auth/`
+        *   **`__init__.py`**: Initializes the `Auth` routes package, grouping authentication-related endpoints.
+        *   **`oauth_routes.py`**: Manages OAuth 2.0 authentication flows for Google and Apple, handling user login, callback processing, and linking OAuth accounts to application users. It generates JWTs upon successful authentication and includes specific routes for admin Google OAuth and GitHub/Vercel OAuth integrations for portfolio deployment.
+        *   **`password_reset_routes.py`**: Provides API endpoints for managing the password reset lifecycle, including requesting a reset email (`/request-reset`), verifying the reset token (`/verify-token/<token>`), and submitting a new password (`/reset-password`).
+
+    *   #### `games/`
+        *   **`__init__.py`**: Initializes the `games` routes package, containing endpoints for various game features.
+        *   **`cipher_routes.py`**: Manages the backend for the cipher game, providing routes to fetch challenges, submit solutions, and unlock hints. It handles user progress and awards XP/coins for successful completions.
+        *   **`incident_routes.py`**: Drives the incident response simulation game, offering API endpoints to fetch scenarios, start new game sessions, process user actions within scenarios, and calculate final scores. It also manages scenario difficulty, bookmarks, and awards achievements based on performance.
+        *   **`phishing_routes.py`**: Contains the backend logic for the "Phishing Phrenzy" game, including routes to fetch phishing and legitimate examples with a smart shuffling algorithm based on user history. It also handles score submissions, awards XP/coins, and provides a game leaderboard.
+        *   **`threat_hunter_routes.py`**: Manages the "Threat Hunter" log analysis game, providing API endpoints to retrieve scenarios, start new game sessions, and submit user analyses of log data. It evaluates submissions, calculates scores, awards XP/coins, and provides feedback with achievement tracking.
+
+    *   #### `info/`
+        *   **`__init__.py`**: Initializes the `info` routes package for informational endpoints.
+        *   **`contact_form.py`**: Provides an API endpoint (`/submit`) for handling user contact form submissions, validating input and sending an email to the support address.
+
+    *   #### `main/`
+        *   **`__init__.py`**: Initializes the `main` routes package, which contains core application API endpoints and registers the `api_bp` blueprint.
+        *   **`achievements_routes.py`**: Provides an API endpoint (`/achievements`) to retrieve the list of all available achievements from the database.
+        *   **`blueprint.py`**: Defines the primary API blueprint (`api_bp`) used by many core application routes like user management, tests, and shop.
+        *   **`daily_question_routes.py`**: Handles the daily question feature, offering routes to claim daily coin bonuses, fetch the current day's question, and submit answers, awarding coins based on correctness.
+        *   **`flashcard_routes.py`**: Powers the flashcard learning feature, providing API endpoints to fetch flashcard categories (certification vaults) and individual flashcards. It handles user interactions like saving cards, recording study progress, and setting difficulty ratings per card, awarding XP and coins accordingly.
+        *   **`leaderboard_routes.py`**: Manages leaderboard functionality, offering an endpoint for the in-app user leaderboard and a separate, public-facing version (`/public-leaderboard/board`) with longer caching for the marketing site.
+        *   **`newsletter_routes.py`**: Provides API endpoints for managing newsletter subscriptions, including `/subscribe`, `/unsubscribe` (by email), and `/unsubscribe/<token>` for one-click unsubscription from email links.
+        *   **`shop_routes.py`**: Handles the in-app shop functionality, providing routes to fetch available items, process user purchases using in-game coins, and equip cosmetic items like avatars.
+        *   **`support_routes.py`**: Implements the backend for the user support system, offering API endpoints for users to manage their support threads, including creating new threads, listing existing ones, fetching messages, and posting replies. It uses SocketIO for real-time communication updates between users and admins.
+        *   **`test_attempt_routes.py`**: Manages user test attempts, providing API endpoints to get, update, and finish test sessions. It handles answer submissions differently for exam mode (feedback at the end) versus practice mode (immediate feedback and rewards), and tracks progress, scores, and achievements.
+        *   **`test_routes.py`**: Provides API endpoints to retrieve specific test documents, allowing fetching by a global test ID or by a combination of category and test ID.
+        *   **`unlock.py`**: Contains utility functions for checking and unlocking user achievements based on criteria like test completions, scores, and user progression. It interacts with user data and achievement definitions to update user profiles.
+        *   **`user_routes.py`**: Manages user authentication and profile operations, providing endpoints for registration, login (with JWT generation), logout (with token revocation), and JWT refresh. It also allows users to retrieve their data and update profile details like username, email, and password, and includes routes for adding XP/coins.
+
+    *   #### `Subscription/`
+        *   **`__init__.py`**: Initializes the `Subscription` routes package.
+        *   **`subscription_routes.py`**: Handles all aspects of user subscriptions, integrating with Stripe for web payments and Apple In-App Purchases for iOS. It provides endpoints for creating checkout sessions, verifying Apple receipts, processing webhooks from Stripe for events like subscription creation/cancellation, and checking subscription statuses.
+
+### `security/`
+
+*   **`__init__.py`**: Initializes the `security` package, grouping various security-related modules.
+
+    *   #### `admin/`
+        *   **`__init__.py`**: Initializes the `admin` security sub-package.
+        *   **`admin_newsletter_routes.py`**: Contains admin-specific API endpoints for managing newsletter campaigns, allowing administrators to create, view, send, and delete newsletters, as well as list all subscribers. Access is restricted to authenticated admin users.
+        *   **`admin_routes.py`**: Powers the administrative dashboard, offering a wide range of functionalities including user management, support thread handling, content management for tests and daily questions, and system monitoring (performance, logs, health checks). It implements secure admin authentication with role-based access control and includes a read-only database shell for diagnostics.
+
+    *   #### `helpers/`
+        *   **`__init__.py`**: Initializes the `helpers` security sub-package.
+        *   **`unhackable.py`**: Contains highly robust input validation and sanitization functions specifically for securing admin authentication. It employs multiple layers of checks, including Unicode normalization, character set validation, detection of homograph attacks, script mixing, control characters, common attack patterns (SQLi, XSS, Command Injection), entropy analysis, and keyboard pattern detection to prevent sophisticated attacks.
+
+    *   #### `honeypot/`
+        *   **`__init__.py`**: Initializes the `Honeypot` security sub-package.
+        *   **`honeypot_pages.py`**: Serves various deceptive web pages mimicking common targets like WordPress admin, phpMyAdmin, and generic login portals to attract and log malicious actors. It categorizes incoming requests to specific honeypot types and logs detailed interaction data. Includes a special `/system/<path:component>` route for a redirection loop honeypot.
+        *   **`honeypot_routes.py`**: Contains an extensive, categorized list of common web paths frequently targeted by scanners and attackers, used to dynamically register honeypot endpoints.
+        *   **`honeypot.py`**: Orchestrates the honeypot functionality by logging detailed scan attempts, including IP geolocation, ASN information, User-Agent parsing, and Tor/proxy detection. It implements rate limiting for honeypot interactions, calculates threat scores for clients, and can trigger actions for high-threat actors. This module uses GeoIP databases and a list of common scan paths to enhance detection and logging.
+        *   ##### `C2/`
+            *   **`__init__.py`**: Initializes the C2 (Command and Control) sub-package within the honeypot.
+            *   **`payloads/security-diagnostic.js`**: This advanced JavaScript payload, disguised as a "Security Diagnostic Tool," is the client-side agent for the honeypot's C2 system. It performs extensive browser fingerprinting, harvests credentials from forms, local/session storage, and cookies, and exfiltrates this data to the C2 server using RC4 encryption and custom Base64 encoding. It also polls for and executes commands received from the C2 server, enabling remote interaction with compromised environments.
+            *   **`c2_routes.py`**: Implements the backend for a mock Command and Control (C2) server within the honeypot, designed to receive beacons from compromised "implants" (via `security-diagnostic.js`). It stores harvested credentials, queues commands for implants, and logs C2 activity. Admin-facing routes allow viewing active sessions and issuing commands to simulated compromised systems.
+        *   ##### `helpers/`
+            *   **`__init__.py`**: Initializes helper utilities for the honeypot system.
+            *   **`geo_db_updater.py`**: Manages the automated download and extraction of MaxMind GeoLite2 ASN and Country databases, ensuring up-to-date IP geolocation information for security monitoring.
+            *   **`proxy_detector.py`**: Implements a proxy and Tor exit node detection service, which periodically updates its lists from public sources. It caches these lists locally to efficiently check if an IP address is associated with Tor or a known public proxy.
+
+    *   #### `middleware/`
+        *   **`__init__.py`**: Initializes the `middleware` security sub-package.
+        *   **`csrf_protection.py`**: Provides CSRF (Cross-Site Request Forgery) protection by generating and validating tokens for sensitive requests, primarily targeting admin routes. It helps ensure that state-changing actions are initiated legitimately by the user.
+        *   **`jwt_auth.py`**: Implements JWT-based authentication using Flask-JWT-Extended, handling token creation (access and refresh), revocation via a blocklist, and user lookup. It provides custom decorators (`jwt_optional_wrapper`, `jwt_required_wrapper`) for flexible route protection, supporting both JWTs and a fallback X-User-Id header for compatibility.
+        *   **`subscription_check.py`**: Enforces subscription-based access control for various application features. It includes a `subscription_required` decorator and a `before_request` middleware that checks if a user has an active premium subscription or, for free users, if they have remaining usage for limited-access features.
+
+    *   #### `proxy_cache/`
+        *   **`proxies.json`**: A JSON file caching a list of known public proxy IP addresses, used by the `proxy_detector.py` to speed up proxy identification.
+        *   **`tor_nodes.json`**: Caches a list of identified Tor exit node IP addresses along with the last update timestamp, utilized by `proxy_detector.py` for efficient Tor detection.
+
+    *   #### `rate_limiters/`
+        *   **`__init__.py`**: Initializes the `rate_limiters` security sub-package.
+        *   **`ai_guard.py`**: Provides input validation and control for AI-powered features, including limiting prompt length, estimating and checking token usage against predefined limits for different AI operations (analogy, scenario, GRC, xploit), and logging AI requests.
+        *   **`ai_utils.py`**: Contains utility functions for AI-related security, primarily `get_current_user_id` which robustly extracts the user ID from session, JWT, or request headers for consistent identification.
+        *   **`global_rate_limiter.py`**: Implements a robust global rate limiter applied to public API endpoints, tracking usage via a composite client identifier (IP, User-Agent, etc.). It features progressive rate limits with increasing penalty periods for repeated violations and incorporates suspicious pattern detection (e.g., SQLi, XSS attempts) in request data for non-AI endpoints to block malicious requests.
+        *   **`rate_limiter.py`**: Provides a class-based rate limiter specifically for AI-powered features (analogy, scenario, GRC, portfolio generation). It tracks API call frequency per user for each AI endpoint type using MongoDB, enforcing predefined limits to prevent abuse.
+
+### `tasks/`
+
+*   **`__init__.py`**: Initializes the `tasks` package for Celery background tasks.
+*   **`async_tasks.py`**: Defines various Celery tasks for asynchronous and scheduled background operations critical to application maintenance and performance. These tasks include aggregating performance metrics, checking API health, cleaning up different types of logs (audit, API health, NGINX, etc.), updating expired user subscriptions, managing rate limit records, and triggering GeoIP database updates.
+*   **`cleanup_tokens.py`**: Contains a function to periodically clean up expired JWTs from the `token_blocklist` collection, preventing it from growing indefinitely.
+
+### `utils/`
+
+*   **`__init__.py`**: Initializes the `utils` package for utility functions.
+*   **`apple_iap_verification.py`**: Provides an `AppleReceiptVerifier` class for validating Apple In-App Purchase receipts against Apple's production and sandbox environments. It parses the verification response to determine subscription validity and extract details like product ID and expiration dates.
+*   **`deployment_service.py`**: Manages the automated deployment of user-generated portfolios to Vercel via GitHub. This service handles creating (or finding existing) GitHub repositories, uploading portfolio files, linking the repository to a new Vercel project, triggering the deployment, and polling for its completion status.
+*   **`email_sender.py`**: A utility class for sending emails via SendGrid, supporting different "from" addresses based on the email type (e.g., password reset, newsletter, support). It includes a method to send pre-formatted HTML password reset emails.
+
+------------------------------------------
+# Frontend Structure and File Explanations
 
 ### `ops/` - Operations Files
 
